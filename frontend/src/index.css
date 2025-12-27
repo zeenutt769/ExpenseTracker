@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+    /* Dark Theme Palette - Hux Aesthetic */
+    --bg-primary: #050505;
+    /* Pitch black base */
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    --accent-primary: #3B82F6;
+
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (min-width: 768px) {
+    html {
+        cursor: none;
+        /* Hide default cursor to use custom follower only on desktop */
+    }
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Optimized Fixed Background via pseudo-element to avoid changing background-attachment on scroll */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15), transparent 60%),
+        radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.08), transparent 40%);
+    pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Support for standard tailwind duration override if needed, though the above is hardcoded to 0.5s for simplicity. 
+   To support duration-500 we can rely on standard tailwind if we used the animate-spin syntax, 
+   but for 'animate-in' without plugin, simple CSS is best. */
